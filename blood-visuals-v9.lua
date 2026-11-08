@@ -316,8 +316,7 @@ local function replaceTorso(body, wound)
 
     local record = {old = body.LocalTransparencyModifier, decals = {}, pieces = {}}
     local definitions = {
-        {"Torn torso", fitted.shell, garment, ratio,
-            garment ~= "" and Color3.new(1, 1, 1) or body.Color},
+        {"Torn torso", fitted.shell, garment, ratio, body.Color},
         {"Tissue lining", fitted.lining, anatomyTexture, ratio,
             Color3.new(1, 1, 1)},
         {"Lungs", meshAssets.lungs, anatomyTexture,
