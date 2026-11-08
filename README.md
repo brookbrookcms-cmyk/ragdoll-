@@ -1,13 +1,13 @@
 # Ragdoll Physics visual scripts
 
-The latest version is [`blood-visuals-v15.lua`](blood-visuals-v15.lua). It is a
+The latest version is [`blood-visuals-v16.lua`](blood-visuals-v16.lua). It is a
 client-side Delta script with a small ON/OFF switch. It detects the game's
 `WoundMark` effects and cuts the corresponding NPC2 R15 body mesh. A single
 shot makes a small opening; grouped hits make wider openings. Bone and muscle
 structures are loaded for the wounded part and exposed within the cut.
 
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/brookbrookcms-cmyk/ragdoll-/main/blood-visuals-v15.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/brookbrookcms-cmyk/ragdoll-/main/blood-visuals-v16.lua"))()
 ```
 
 Delta needs `writefile` and `getcustomasset` (or `getsynasset`) to load the
@@ -23,3 +23,8 @@ match every custom head texture exactly. An index identifies the named bones
 under each hit and renders their geometry separately. The bones are visual
 meshes, not simulated rigid bodies. This is a visual script and does not
 change the game's hit detection or damage.
+
+V16 hides the game's pink wound stains and replaces visible splats with
+bounded, darker atlas marks. It adds a short gravity-influenced impact spray
+and a LOW/MED/HIGH quality switch. The [asset pipeline](ASSET_PIPELINE.md)
+explains the source meshes and the current client-side rendering limits.
