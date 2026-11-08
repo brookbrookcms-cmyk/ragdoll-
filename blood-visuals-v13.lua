@@ -585,7 +585,7 @@ local function localChip(body, state, cut)
     local cf=CFrame.lookAt(at+n*0.017,at+n)
         * CFrame.Angles(0,0,rng:NextNumber(-3.14,3.14))
     local scale=math.clamp(cut.r*1.1,0.12,0.36)
-    addPart(state,createMesh(body,"Part-specific bone shard",id,
+    return addPart(state,createMesh(body,"Part-specific bone shard",id,
         materialAsset,Color3.fromRGB(224,213,195),
         Vector3.new(scale,scale,scale),cf))
 end
@@ -660,16 +660,40 @@ local function showHit(body, hit, tier, marks)
     local state=states[body]
     if not state then
         state={old=body.LocalTransparencyModifier,parts={},decals={},
-            cuts={},skin=nil,variant=chooseVariant(body,pos)}
+            cuts={},woundParts={},skin=nil,variant=chooseVariant(body,pos)}
         states[body]=state
     end
+    -- Nearby shots expand or replace the existing cut rather than stacking
+    -- identical bone meshes at exactly the same position.
+    for i=#state.cuts,1,-1 do
+        local oldCut=state.cuts[i]
+        if (oldCut.p-cut.p).Magnitude < math.max(oldCut.r,cut.r)*0.68
+            and oldCut.n:Dot(cut.n)>0.62 then
+            if oldCut.r>=cut.r then
+                -- The previous cut already covers this strike.
+                return
+            end
+            table.remove(state.cuts,i)
+            local oldParts=table.remove(state.woundParts,i)
+            if oldParts then
+                for _,holder in ipairs(oldParts) do
+                    if holder.Parent then holder:Destroy() end
+                end
+            end
+        end
+    end
     if #state.cuts >= MAX_CUTS then
-        -- Only keep the latest independent openings to bound mobile work.
         table.remove(state.cuts,1)
+        local oldest=table.remove(state.woundParts,1)
+        if oldest then
+            for _,holder in ipairs(oldest) do
+                if holder.Parent then holder:Destroy() end
+            end
+        end
     end
     table.insert(state.cuts,cut)
 
-    -- A real opening in the fitted R15 body mesh, not a circular decal.
+    -- A localized opening in the fitted R15 body mesh, not a circular decal.
     local opened=updateSkin(body,state)
     if not opened then
         -- Never hide the intact body when its source mesh cannot be replaced.
@@ -679,19 +703,26 @@ local function showHit(body, hit, tier, marks)
     -- Each body part loads its own bone and muscle topology from the
     -- Écorché atlas: skull, ribs, pelvis, humerus, radius/ulna, carpals,
     -- phalanges, femur, tibia/fibula, tarsals and metatarsals.
+    local woundParts={}
     if opened then
         local exposedBone=regionMesh(body,state,cut,"bone")
-        -- Muscle atlas contains much more geometry than bone; show only
-        -- a narrow peripheral layer on medium/large impacts, never a
-        -- floating solid red pile over the chest.
-        if tier>=2 then regionMesh(body,state,cut,"muscle") end
-        if not exposedBone then localChip(body,state,cut) end
+        if exposedBone then table.insert(woundParts,exposedBone) end
+        -- Subtle peripheral muscle only on medium and large injuries.
+        if tier>=2 then
+            local muscle=regionMesh(body,state,cut,"muscle")
+            if muscle then table.insert(woundParts,muscle) end
+        end
+        if not exposedBone then
+            local chip=localChip(body,state,cut)
+            if chip then table.insert(woundParts,chip) end
+        end
     elseif body.Name=="Head" then
-        -- The locked original head mesh cannot be boolean-cut. Do not
-        -- pretend an intact head has a large open cavity: place only a
-        -- small, genuinely skull-derived localized fragment.
-        localChip(body,state,cut)
+        -- No authorized head skin mesh: preserve intact face and use
+        -- only a localized skull fragment rather than false open geometry.
+        local chip=localChip(body,state,cut)
+        if chip then table.insert(woundParts,chip) end
     end
+    table.insert(state.woundParts,woundParts)
 
     for _,mark in ipairs(marks) do
         local decal=mark:FindFirstChildWhichIsA("Decal")
