@@ -1,0 +1,3883 @@
+{
+  "bone_count": 206,
+  "bone_mesh_count": 208,
+  "counting_note": "Manubrium, body and xiphoid are one sternum in the 206-bone count.",
+  "supplemental_bones": [
+    "Hyoid bone",
+    "Coccyx",
+    "Left malleus",
+    "Left incus",
+    "Left stapes",
+    "Right malleus",
+    "Right incus",
+    "Right stapes",
+    "Left triquetrum",
+    "Right triquetrum"
+  ],
+  "structures": [
+    {
+      "name": "Abdominal part of left pectoralis major",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Abdominal part of right pectoralis major",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Abductor digiti minimi of left foot",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Abductor digiti minimi of left hand",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Abductor digiti minimi of right foot",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Abductor digiti minimi of right hand",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Acromial part of left deltoid",
+      "part": "LeftUpperArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Acromial part of right deltoid",
+      "part": "RightUpperArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Ascending part of left trapezius",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Ascending part of right trapezius",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Atlas",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Axis",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Body of sternum",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Clavicular part of left deltoid",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Clavicular part of left pectoralis major",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Clavicular part of right deltoid",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Clavicular part of right pectoralis major",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Coccyx",
+      "part": "RightUpperLeg",
+      "tissue": "bone",
+      "source": "supplemental approximation"
+    },
+    {
+      "name": "Descending part of left trapezius",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Descending part of right trapezius",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of left big toe",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of left fourth toe",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of left index finger",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of left little finger",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of left little toe",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of left middle finger",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of left ring finger",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of left second toe",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of left third toe",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of left thumb",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of right big toe",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of right fourth toe",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of right index finger",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of right little finger",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of right little toe",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of right middle finger",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of right ring finger",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of right second toe",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of right third toe",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Distal phalanx of right thumb",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Eighth thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Eleventh thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Ethmoid",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "External ear",
+      "part": "Head",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "External intercostal muscle",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Fifth cervical vertebra",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Fifth lumbar vertebra",
+      "part": "LowerTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Fifth thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "First lumbar vertebra",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "First lumbrical of left foot",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "First lumbrical of right foot",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "First plantar interosseous of left foot",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "First plantar interosseous of right foot",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "First thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Flexor digiti minimi brevis of left foot",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Flexor digiti minimi brevis of left hand",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Flexor digiti minimi brevis of right foot",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Flexor digiti minimi brevis of right hand",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Flexor retinaculum of left wrist",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Flexor retinaculum of right wrist",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Fourth cervical vertebra",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Fourth lumbar vertebra",
+      "part": "LowerTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Fourth lumbrical of left foot",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Fourth lumbrical of right foot",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Fourth thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Frontal bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Humeral head of left flexor carpi ulnaris",
+      "part": "LeftLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Humeral head of left pronator teres",
+      "part": "LeftLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Humeral head of right flexor carpi ulnaris",
+      "part": "RightLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Humeral head of right pronator teres",
+      "part": "RightLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Hyoid bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "supplemental approximation"
+    },
+    {
+      "name": "Intervertebral disk of axis",
+      "part": "Head",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of eighth thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of eleventh thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of fifth cervical vertebra",
+      "part": "Head",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of fifth lumbar vertebra",
+      "part": "LowerTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of fifth thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of first lumbar vertebra",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of first thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of fourth cervical vertebra",
+      "part": "Head",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of fourth lumbar vertebra",
+      "part": "LowerTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of fourth thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of ninth thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of second lumbar vertebra",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of second thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of seventh cervical vertebra",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of seventh thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of sixth cervical vertebra",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of sixth thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of tenth thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of third cervical vertebra",
+      "part": "Head",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of third lumbar vertebra",
+      "part": "LowerTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Intervertebral disk of third thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Lateral head of left flexor hallucis brevis",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Lateral head of left gastrocnemius",
+      "part": "LeftLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Lateral head of left triceps brachii",
+      "part": "LeftUpperArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Lateral head of right flexor hallucis brevis",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Lateral head of right gastrocnemius",
+      "part": "RightLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Lateral head of right triceps brachii",
+      "part": "RightUpperArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left abductor hallucis",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left abductor pollicis brevis",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left abductor pollicis longus",
+      "part": "LeftLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left adductor brevis",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left adductor longus",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left adductor magnus",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left adductor minimus",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left anconeus",
+      "part": "LeftLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left brachialis",
+      "part": "LeftUpperArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left brachioradialis",
+      "part": "LeftLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left calcaneal tendon",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left calcaneus",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left capitate",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left clavicle",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left coracobrachialis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left cornea",
+      "part": "Head",
+      "tissue": "eye",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left corrugator supercilii",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left cuboid bone",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left deep part of masseter",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left depressor anguli oris",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left depressor labii inferioris",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left eighth rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left eleventh rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left extensor carpi radialis brevis",
+      "part": "LeftLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left extensor carpi radialis longus",
+      "part": "LeftLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left extensor carpi ulnaris",
+      "part": "LeftLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left extensor carpi ulnaris (2)",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left extensor digiti minimi",
+      "part": "LeftLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left extensor digitorum",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left extensor digitorum longus",
+      "part": "LeftLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left extensor hallucis brevis",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left extensor hallucis longus",
+      "part": "LeftLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left extensor indicis",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left extensor pollicis brevis",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left extensor pollicis longus",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left external oblique",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left femur",
+      "part": "LeftUpperLeg",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left fibula",
+      "part": "LeftLowerLeg",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left fibularis brevis",
+      "part": "LeftLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left fibularis longus",
+      "part": "LeftLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left fibularis tertius",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left fifth costal cartilage",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left fifth metacarpal bone",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left fifth metatarsal bone",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left fifth rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left first costal cartilage",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left first metacarpal bone",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left first metatarsal bone",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left first rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left flexor carpi radialis",
+      "part": "LeftLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left flexor digitorum brevis",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left flexor digitorum longus",
+      "part": "LeftLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left flexor digitorum profundus",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left flexor digitorum superficialis",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left flexor digitorum superficialis (2)",
+      "part": "LeftLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left flexor hallucis longus",
+      "part": "LeftLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left flexor pollicis brevis",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left flexor pollicis longus",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left fourth costal cartilage",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left fourth metacarpal bone",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left fourth metatarsal bone",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left fourth rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left frontalis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left gemellus inferior",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left gemellus superior",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left gluteus maximus",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left gluteus medius",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left gluteus minimus",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left gracilis",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left hamate",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left hip bone",
+      "part": "LowerTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left humerus",
+      "part": "LeftUpperArm",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left iliacus",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left iliocostalis cervicis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left iliocostalis lumborum",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left iliocostalis thoracis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left iliotibial tract",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left incus",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "supplemental approximation"
+    },
+    {
+      "name": "Left inferior head of lateral pterygoid",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left inferior nasal concha",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left infraspinatus muscle",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left intermediate cuneiform bone",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left internal oblique",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left lacrimal bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left lateral cuneiform bone",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left lateral nasal cartilage",
+      "part": "Head",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left latissimus dorsi",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left levator labii superioris",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left levator scapulae",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left longissimus capitis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left longissimus cervicis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left longissimus thoracis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left lower central secondary incisor tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left lower first secondary molar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left lower first secondary premolar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left lower lateral secondary incisor tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left lower second secondary molar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left lower second secondary premolar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left lower secondary canine tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left lunate",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left major alar cartilage",
+      "part": "Head",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left malleus",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "supplemental approximation"
+    },
+    {
+      "name": "Left maxilla",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left medial cuneiform bone",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left medial pterygoid",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left mentalis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left multifidus cervicis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left multifidus lumborum",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left multifidus thoracis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left nasal bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left nasalis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left ninth rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left obliquus capitis inferior",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left obliquus capitis superior",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left obturator externus",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left obturator internus",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left omohyoid",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left opponens pollicis",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left orbicularis oris",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left orbital part of orbicularis oculi",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left palatine bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left palmaris longus",
+      "part": "LeftLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left palpebral part of orbicularis oculi",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left parietal bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left patella",
+      "part": "LeftLowerLeg",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left pectineus",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left pectoralis minor",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left piriformis",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left pisiform",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left plantaris",
+      "part": "LeftLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left popliteus",
+      "part": "LeftLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left posterior layer of thoracolumbar fascia",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left procerus",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left pronator quadratus",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left psoas major",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left quadratus femoris",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left quadratus lumborum",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left radius",
+      "part": "LeftLowerArm",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left rectus abdominis",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left rectus capitis posterior major",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left rectus capitis posterior minor",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left rectus femoris",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left rhomboid major",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left rhomboid minor",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left risorius",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left rotatores",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left sartorius",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left scalenus anterior",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left scalenus medius",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left scalenus posterior",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left scaphoid",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left scapula",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left sclera",
+      "part": "Head",
+      "tissue": "eye",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left second costal cartilage",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left second metacarpal bone",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left second metatarsal bone",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left second rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left semimembranosus",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left semispinalis capitis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left semispinalis cervicis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left semispinalis thoracis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left semitendinosus",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left serratus anterior",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left serratus posterior inferior",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left serratus posterior superior",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left seventh costal cartilage",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left seventh rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left sixth costal cartilage",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left sixth rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left soleus",
+      "part": "LeftLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left spinalis thoracis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left splenius capitis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left splenius cervicis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left stapes",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "supplemental approximation"
+    },
+    {
+      "name": "Left sternocleidomastoid",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left sternohyoid",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left sternothyroid",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left subclavius",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left subscapularis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left superficial part of masseter",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left superior head of lateral pterygoid",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left supinator",
+      "part": "LeftLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left supraspinatus",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left talus",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left temporal bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left temporalis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left tensor fasciae latae",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left tenth rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left teres major",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left teres minor",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left third costal cartilage",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left third metacarpal bone",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left third metatarsal bone",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left third rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left thyrohyoid",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left tibia",
+      "part": "LeftLowerLeg",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left tibialis anterior",
+      "part": "LeftLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left tibialis posterior",
+      "part": "LeftLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left transversus abdominis",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left trapezium",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left trapezoid",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left triquetrum",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "supplemental approximation"
+    },
+    {
+      "name": "Left twelfth rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left ulna",
+      "part": "LeftLowerArm",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left upper central secondary incisor tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left upper first secondary molar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left upper first secondary premolar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left upper lateral secondary incisor tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left upper second secondary molar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left upper second secondary premolar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left upper secondary canine tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left vastus intermedius",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left vastus lateralis",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left vastus medialis",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left zygomatic bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Left zygomaticus major",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Left zygomaticus minor",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Linea alba",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Long head of left biceps brachii",
+      "part": "LeftUpperArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Long head of left biceps femoris",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Long head of left triceps brachii",
+      "part": "LeftUpperArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Long head of right biceps brachii",
+      "part": "RightUpperArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Long head of right biceps femoris",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Long head of right triceps brachii",
+      "part": "RightUpperArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Mandible",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Manubrium",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Medial head of left flexor hallucis brevis",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Medial head of left gastrocnemius",
+      "part": "LeftLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Medial head of left triceps brachii",
+      "part": "LeftUpperArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Medial head of right flexor hallucis brevis",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Medial head of right gastrocnemius",
+      "part": "RightLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Medial head of right triceps brachii",
+      "part": "RightUpperArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of left fourth toe",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of left index finger",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of left little finger",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of left little toe",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of left middle finger",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of left ring finger",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of left second toe",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of left third toe",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of right fourth toe",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of right index finger",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of right little finger",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of right little toe",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of right middle finger",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of right ring finger",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of right second toe",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Middle phalanx of right third toe",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Navicular bone of left foot",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Navicular bone of right foot",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Ninth thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Oblique head of left adductor hallucis",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Oblique head of left adductor pollicis",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Oblique head of right adductor hallucis",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Oblique head of right adductor pollicis",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Occipital bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Opponens digiti minimi of left foot",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Opponens digiti minimi of left hand",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Opponens digiti minimi of right foot",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Opponens digiti minimi of right hand",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of left big toe",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of left fourth toe",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of left index finger",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of left little finger",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of left little toe",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of left middle finger",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of left ring finger",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of left second toe",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of left third toe",
+      "part": "LeftFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of left thumb",
+      "part": "LeftHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of right big toe",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of right fourth toe",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of right index finger",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of right little finger",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of right little toe",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of right middle finger",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of right ring finger",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of right second toe",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of right third toe",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Proximal phalanx of right thumb",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right abductor hallucis",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right abductor pollicis brevis",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right abductor pollicis longus",
+      "part": "RightLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right adductor brevis",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right adductor longus",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right adductor magnus",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right adductor minimus",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right anconeus",
+      "part": "RightLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right brachialis",
+      "part": "RightUpperArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right brachioradialis",
+      "part": "RightLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right calcaneal tendon",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right calcaneus",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right capitate",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right clavicle",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right coracobrachialis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right cornea",
+      "part": "Head",
+      "tissue": "eye",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right corrugator supercilii",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right cuboid bone",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right deep part of masseter",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right depressor anguli oris",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right depressor labii inferioris",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right eighth rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right eleventh rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right extensor carpi radialis brevis",
+      "part": "RightLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right extensor carpi radialis longus",
+      "part": "RightLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right extensor carpi ulnaris",
+      "part": "RightLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right extensor carpi ulnaris (2)",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right extensor digiti minimi",
+      "part": "RightLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right extensor digitorum",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right extensor digitorum longus",
+      "part": "RightLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right extensor hallucis brevis",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right extensor hallucis longus",
+      "part": "RightLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right extensor indicis",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right extensor pollicis brevis",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right extensor pollicis longus",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right external oblique",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right femur",
+      "part": "RightUpperLeg",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right fibula",
+      "part": "RightLowerLeg",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right fibularis brevis",
+      "part": "RightLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right fibularis longus",
+      "part": "RightLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right fibularis tertius",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right fifth costal cartilage",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right fifth metacarpal bone",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right fifth metatarsal bone",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right fifth rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right first costal cartilage",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right first metacarpal bone",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right first metatarsal bone",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right first rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right flexor carpi radialis",
+      "part": "RightLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right flexor digitorum brevis",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right flexor digitorum longus",
+      "part": "RightLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right flexor digitorum profundus",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right flexor digitorum superficialis",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right flexor digitorum superficialis (2)",
+      "part": "RightLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right flexor hallucis longus",
+      "part": "RightLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right flexor pollicis brevis",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right flexor pollicis longus",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right fourth costal cartilage",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right fourth metacarpal bone",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right fourth metatarsal bone",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right fourth rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right frontalis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right gemellus inferior",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right gemellus superior",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right gluteus maximus",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right gluteus medius",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right gluteus minimus",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right gracilis",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right hamate",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right hip bone",
+      "part": "LowerTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right humerus",
+      "part": "RightUpperArm",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right iliacus",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right iliocostalis cervicis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right iliocostalis lumborum",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right iliocostalis thoracis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right iliotibial tract",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right incus",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "supplemental approximation"
+    },
+    {
+      "name": "Right inferior head of lateral pterygoid",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right inferior nasal concha",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right infraspinatus muscle",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right intermediate cuneiform bone",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right internal oblique",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right lacrimal bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right lateral cuneiform bone",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right lateral nasal cartilage",
+      "part": "Head",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right latissimus dorsi",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right levator labii superioris",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right levator scapulae",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right longissimus capitis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right longissimus cervicis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right longissimus thoracis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right lower central secondary incisor tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right lower first secondary molar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right lower first secondary premolar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right lower lateral secondary incisor tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right lower second secondary molar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right lower second secondary premolar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right lower secondary canine tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right lunate",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right major alar cartilage",
+      "part": "Head",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right malleus",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "supplemental approximation"
+    },
+    {
+      "name": "Right maxilla",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right medial cuneiform bone",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right medial pterygoid",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right mentalis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right multifidus cervicis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right multifidus lumborum",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right multifidus thoracis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right nasal bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right nasalis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right ninth rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right obliquus capitis inferior",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right obliquus capitis superior",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right obturator externus",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right obturator internus",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right omohyoid",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right opponens pollicis",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right orbicularis oris",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right orbital part of orbicularis oculi",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right palatine bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right palmaris longus",
+      "part": "RightLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right palpebral part of orbicularis oculi",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right parietal bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right patella",
+      "part": "RightLowerLeg",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right pectineus",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right pectoralis minor",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right piriformis",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right pisiform",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right plantaris",
+      "part": "RightLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right popliteus",
+      "part": "RightLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right posterior layer of thoracolumbar fascia",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right procerus",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right pronator quadratus",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right psoas major",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right quadratus femoris",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right quadratus lumborum",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right radius",
+      "part": "RightLowerArm",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right rectus abdominis",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right rectus capitis posterior major",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right rectus capitis posterior minor",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right rectus femoris",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right rhomboid major",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right rhomboid minor",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right risorius",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right rotatores",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right sartorius",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right scalenus anterior",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right scalenus medius",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right scalenus posterior",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right scaphoid",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right scapula",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right sclera",
+      "part": "Head",
+      "tissue": "eye",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right second costal cartilage",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right second metacarpal bone",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right second metatarsal bone",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right second rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right semimembranosus",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right semispinalis capitis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right semispinalis cervicis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right semispinalis thoracis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right semitendinosus",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right serratus anterior",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right serratus posterior inferior",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right serratus posterior superior",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right seventh costal cartilage",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right seventh rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right sixth costal cartilage",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right sixth rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right soleus",
+      "part": "RightLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right spinalis thoracis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right splenius capitis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right splenius cervicis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right stapes",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "supplemental approximation"
+    },
+    {
+      "name": "Right sternocleidomastoid",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right sternohyoid",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right sternothyroid",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right subclavius",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right subscapularis",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right superficial part of masseter",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right superior head of lateral pterygoid",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right supinator",
+      "part": "RightLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right supraspinatus",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right talus",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right temporal bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right temporalis",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right tensor fasciae latae",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right tenth rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right teres major",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right teres minor",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right third costal cartilage",
+      "part": "UpperTorso",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right third metacarpal bone",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right third metatarsal bone",
+      "part": "RightFoot",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right third rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right thyrohyoid",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right tibia",
+      "part": "RightLowerLeg",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right tibialis anterior",
+      "part": "RightLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right tibialis posterior",
+      "part": "RightLowerLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right transversus abdominis",
+      "part": "LowerTorso",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right trapezium",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right trapezoid",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right triquetrum",
+      "part": "RightHand",
+      "tissue": "bone",
+      "source": "supplemental approximation"
+    },
+    {
+      "name": "Right twelfth rib",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right ulna",
+      "part": "RightLowerArm",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right upper central secondary incisor tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right upper first secondary molar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right upper first secondary premolar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right upper lateral secondary incisor tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right upper second secondary molar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right upper second secondary premolar tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right upper secondary canine tooth",
+      "part": "Head",
+      "tissue": "tooth",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right vastus intermedius",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right vastus lateralis",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right vastus medialis",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right zygomatic bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Right zygomaticus major",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Right zygomaticus minor",
+      "part": "Head",
+      "tissue": "muscle",
+      "source": "Z-Anatomy"
+    },
+    {
+      "name": "Sacrum",
+      "part": "LowerTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Second lumbar vertebra",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Second lumbrical of left foot",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Second lumbrical of right foot",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Second plantar interosseous of left foot",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Second plantar interosseous of right foot",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Second thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Septal nasal cartilage",
+      "part": "Head",
+      "tissue": "cartilage",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Set of dorsal interossei of left hand",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Set of dorsal interossei of right hand",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Set of lumbricals of left hand",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Set of lumbricals of right hand",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Set of palmar interossei of left hand",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Set of palmar interossei of right hand",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Seventh cervical vertebra",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Seventh thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Short head of left biceps brachii",
+      "part": "LeftUpperArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Short head of left biceps femoris",
+      "part": "LeftUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Short head of right biceps brachii",
+      "part": "RightUpperArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Short head of right biceps femoris",
+      "part": "RightUpperLeg",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Sixth cervical vertebra",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Sixth thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Sphenoid bone",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Spinal part of left deltoid",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Spinal part of right deltoid",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Sternocostal part of left pectoralis major",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Sternocostal part of right pectoralis major",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Tenth thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Third cervical vertebra",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Third lumbar vertebra",
+      "part": "LowerTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Third lumbrical of left foot",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Third lumbrical of right foot",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Third plantar interosseous of left foot",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Third plantar interosseous of right foot",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Third thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Transverse head of left adductor hallucis",
+      "part": "LeftFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Transverse head of left adductor pollicis",
+      "part": "LeftHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Transverse head of right adductor hallucis",
+      "part": "RightFoot",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Transverse head of right adductor pollicis",
+      "part": "RightHand",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Transverse part of left trapezius",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Transverse part of right trapezius",
+      "part": "UpperTorso",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Twelfth thoracic vertebra",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Ulnar head of left flexor carpi ulnaris",
+      "part": "LeftLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Ulnar head of left pronator teres",
+      "part": "LeftLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Ulnar head of right flexor carpi ulnaris",
+      "part": "RightLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Ulnar head of right pronator teres",
+      "part": "RightLowerArm",
+      "tissue": "muscle",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Vomer",
+      "part": "Head",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    },
+    {
+      "name": "Xiphoid process",
+      "part": "UpperTorso",
+      "tissue": "bone",
+      "source": "BodyParts3D"
+    }
+  ]
+}
