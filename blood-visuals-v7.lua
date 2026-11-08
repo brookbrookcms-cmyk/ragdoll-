@@ -343,9 +343,14 @@ local function replaceTorso(body, wound)
     local function rod(name, a, b, thickness, color)
         local vector = b - a
         local mid = (a + b) * 0.5
+        local xAxis = vector.Unit
+        local helper = math.abs(xAxis:Dot(Vector3.yAxis)) > 0.95
+            and Vector3.xAxis or Vector3.yAxis
+        local zAxis = xAxis:Cross(helper).Unit
+        local yAxis = zAxis:Cross(xAxis).Unit
         piece(Enum.PartType.Cylinder, name,
             Vector3.new(vector.Magnitude, thickness, thickness),
-            CFrame.lookAt(mid, b) * CFrame.Angles(0, math.pi / 2, 0),
+            CFrame.fromMatrix(mid, xAxis, yAxis, zAxis),
             color)
     end
 
