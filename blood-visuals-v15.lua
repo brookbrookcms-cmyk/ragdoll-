@@ -1,11 +1,12 @@
 -- blood-visuals-v15.lua | Roblox Luau client | fitted anatomical cutaway renderer
 -- Regional anatomical cutaways: source meshes retain actual bone and muscle topology.
 -- Anatomical source and attribution: ANATOMY_ATTRIBUTION.md (CC BY-SA 4.0).
--- The 206-bone count describes the source atlas, not 206 simulated rigid bodies.
+-- Named bone meshes are selected at each hit; they are not rigid bodies.
 
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
 local Debris = game:GetService("Debris")
+local HttpService = game:GetService("HttpService")
 local player = Players.LocalPlayer
 local env = (getgenv and getgenv()) or _G
 for v = 1, 15 do
@@ -57,12 +58,13 @@ local rng = Random.new()
 local states, extras, connections = {}, {}, {}
 local bytesCache, parsedCache = {}, {}
 local pending, bodyJobs, epoch, fileSerial = {}, {}, 0, 0
-local bloodAsset, materialAsset
+local bloodAsset, materialAsset, boneIndex
 local staticAssetIds = {}
 local BATCH_WINDOW = 0.19
 local MAX_CUTS = 4
 local MAX_ANATOMY_FACES = 8500
 local MAX_SKIN_FACES = 24000
+local MAX_VISIBLE_BONES = 16
 
 local gui = Instance.new("ScreenGui")
 gui.Name = "RagdollAnatomyV15"
@@ -511,7 +513,7 @@ end
 -- Clip original source triangles at the wound boundary. Unlike v12,
 -- this does not randomly skip triangles or leave long facets hanging out.
 -- All positions remain in body-local source units; UV and normals interpolate.
-local function clipAnatomy(source,body,cut,tissue)
+local function clipAnatomy(source,body,cut,tissue,firstFace,lastFace)
     local ratio=ratioFor(body)
     local outerPlanes=cutPlanes(body,cut,tissue=="bone" and 0.95 or 1.02,true)
     local innerPlanes=tissue=="muscle"
@@ -524,7 +526,7 @@ local function clipAnatomy(source,body,cut,tissue)
     local n=cut.n
     local surfaceDepth=cutDepth(body,cut)*0.48
 
-    for face=0,source.faces-1 do
+    for face=firstFace or 0,lastFace or source.faces-1 do
         local at=source.faceOffset+face*12
         local i0=buffer.readu32(b,at)
         local i1=buffer.readu32(b,at+4)
@@ -570,7 +572,7 @@ local function clipAnatomy(source,body,cut,tissue)
         end
         if face>0 and face%7000==0 then task.wait() end
     end
-    return triangleMesh(rows)
+    return triangleMesh(rows), #rows/3
 end
 
 
@@ -581,6 +583,36 @@ local function regionMesh(body, state, cut, tissue)
         warn("Anatomy v15 anatomy: "..tostring(source))
         return
     end
+    local tint=tissue=="bone" and Color3.fromRGB(227,214,190)
+        or Color3.fromRGB(148,68,71)
+    if tissue=="bone" and boneIndex and boneIndex[body.Name] then
+        local visible={}
+        for _,structure in ipairs(boneIndex[body.Name]) do
+            local first=structure.first
+            local good,raw,count=pcall(clipAnatomy,source,body,cut,
+                tissue,first,first+structure.count-1)
+            if not good then
+                warn("Anatomy v15 bone clipping: "..tostring(raw))
+            elseif raw then
+                visible[#visible+1]={name=structure.name,raw=raw,
+                    count=count,bone=structure.bone}
+            end
+        end
+        table.sort(visible,function(a,b) return a.count>b.count end)
+        local holders={}
+        for i=1,math.min(#visible,MAX_VISIBLE_BONES) do
+            local structure=visible[i]
+            local idOk,id=pcall(customAsset,"named-bone.mesh",structure.raw)
+            if idOk and active and not stopped and body.Parent then
+                local label=(structure.bone and "Bone: " or "Anatomy: ")
+                    ..structure.name
+                local holder=addPart(state,createMesh(body,label,id,
+                    materialAsset,tint,ratioFor(body),body.CFrame))
+                if holder then holders[#holders+1]=holder end
+            end
+        end
+        return holders
+    end
     local good,raw=pcall(clipAnatomy,source,body,cut,tissue)
     if not good or not raw then
         if not good then warn("Anatomy v15 clipping: "..tostring(raw)) end
@@ -588,12 +620,8 @@ local function regionMesh(body, state, cut, tissue)
     end
     local idOk,id=pcall(customAsset,tissue.."-region.mesh",raw)
     if not idOk or not active or stopped or not body.Parent then return end
-    local tint=tissue=="bone" and Color3.fromRGB(227,214,190)
-        or Color3.fromRGB(148,68,71)
-    return addPart(state,createMesh(body,
-        (tissue=="bone" and "Local real anatomy: bone"
-            or "Local real anatomy: muscle"),id,materialAsset,tint,
-        ratioFor(body),body.CFrame))
+    return addPart(state,createMesh(body,"Local anatomy: "..tissue,
+        id,materialAsset,tint,ratioFor(body),body.CFrame))
 end
 
 
@@ -725,8 +753,12 @@ local function showHit(body, hit, tier, marks)
     end
 
     if opened then
-        local exposedBone=regionMesh(body,state,cut,"bone")
-        if exposedBone then table.insert(woundParts,exposedBone) end
+        local exposedBones=regionMesh(body,state,cut,"bone")
+        if exposedBones then
+            for _,bone in ipairs(exposedBones) do
+                table.insert(woundParts,bone)
+            end
+        end
         local muscle=regionMesh(body,state,cut,"muscle")
         if muscle then table.insert(woundParts,muscle) end
         if not active or stopped or state.revision~=revision then
@@ -862,6 +894,15 @@ table.insert(connections,button.MouseButton1Click:Connect(function()
     end
     materialAsset=materials
     bloodAsset=blood
+    local indexOk,index=pcall(function()
+        return HttpService:JSONDecode(readBytes("v15-bone-index.json"))
+    end)
+    if not indexOk or type(index)~="table" then
+        warn("Anatomy v15 bone index failed: "..tostring(index))
+        updateButton("ASSET FAILED")
+        return
+    end
+    boneIndex=index
     active=true
     epoch=epoch+1
     updateButton()

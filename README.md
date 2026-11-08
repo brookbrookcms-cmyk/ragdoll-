@@ -19,6 +19,7 @@ The anatomy mesh provenance and license are in
 lists the 206 anatomical bones and all other adapted structures. The game's
 private head mesh cannot be downloaded, so damaged heads use a rounded
 replacement mesh sized to the reported NPC head. The replacement may not
-match every custom head texture exactly. The anatomy is location-specific
-geometry, not 206 separately simulated rigid bones. This is a visual script
-and does not change the game's hit detection or damage.
+match every custom head texture exactly. An index identifies the named bones
+under each hit and renders their geometry separately. The bones are visual
+meshes, not simulated rigid bodies. This is a visual script and does not
+change the game's hit detection or damage.

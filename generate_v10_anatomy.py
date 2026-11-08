@@ -99,6 +99,7 @@ def group_for(obj, meta):
 
 groups = defaultdict(lambda: {'bone': [], 'muscle': []})
 manifest = []
+bone_index = defaultdict(list)
 for obj in bpy.data.objects:
     if obj.type != 'MESH' or obj.name not in META:
         continue
@@ -143,6 +144,7 @@ def export_group(part, tissue, objects):
     depsgraph = bpy.context.evaluated_depsgraph_get()
 
     for obj in objects:
+        first_face = len(rows) // 3
         evaluated = obj.evaluated_get(depsgraph)
         mesh = evaluated.to_mesh()
         mesh.calc_loop_triangles()
@@ -167,6 +169,11 @@ def export_group(part, tissue, objects):
                 rows.append((x, y, z, normal.x, normal.y, normal.z,
                              u, v, 0.0))
         evaluated.to_mesh_clear()
+        if tissue == 'bone':
+            bone_index[part].append({'name': obj.name,
+                                     'bone': META[obj.name].get('tissue', tissue) == 'bone',
+                                     'first': first_face,
+                                     'count': len(rows) // 3 - first_face})
 
     path = ROOT / ('v10-anatomy-' + part.lower() + '-' + tissue + '.mesh')
     with path.open('wb') as file:
@@ -185,6 +192,9 @@ def export_group(part, tissue, objects):
 for part in SIZES:
     for tissue in ('bone', 'muscle'):
         export_group(part, tissue, groups[part][tissue])
+
+(ROOT / 'v15-bone-index.json').write_text(
+    json.dumps(dict(bone_index), separators=(',', ':')))
 
 # Small fragments from actual source bones can peek through tiny wounds.
 def export_chip(source_name, filename, extent):
