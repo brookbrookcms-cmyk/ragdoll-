@@ -494,7 +494,9 @@ local function bodyTexture(body)
 end
 
 local function updateSkin(body, state)
-    if body.Name=="Head" then return true end
+    -- The original NPC head geometry is locked, so we cannot cut it.
+    -- A false result prevents anatomy from floating over intact skin.
+    if body.Name=="Head" then return false end
     local expect=EXPECTED[body.Name]
     if not expect or not tostring(body.MeshId):find(expect,1,true) then
         warn("Anatomy v14: unknown base mesh for " .. body.Name)
