@@ -951,49 +951,70 @@ local function showHit(body, hit, tier, marks)
     table.insert(state.cuts,cut)
     state.revision=state.revision+1
     local revision=state.revision
+    local woundParts={}
 
-    -- Rebuild the skin before publishing cutaway geometry. If another shot
-    -- arrives while clipping is in progress, discard this stale result.
-    local opened=updateSkin(body,state)
-    if not active or stopped or not body.Parent
-        or state.revision~=revision then return end
-    if not opened then
-        -- Reject failed cuts, preserving the previous valid skin.
-        local index=table.find(state.cuts,cut)
-        if index then table.remove(state.cuts,index) end
-        if not state.skin then
-            body.LocalTransparencyModifier=state.old
+    local function cleanupPending()
+        for _,holder in ipairs(woundParts) do
+            if holder and holder.Parent then holder:Destroy() end
         end
     end
 
-    -- Each body part loads its own bone and muscle topology from the
-    -- Écorché atlas: skull, ribs, pelvis, humerus, radius/ulna, carpals,
-    -- phalanges, femur, tibia/fibula, tarsals and metatarsals.
-    local woundParts={}
-    if opened then
-        -- Build a sealed socket before layering real bone and muscle
-        -- in front of it, eliminating the transparent view to the floor.
-        local shellParts=cavityMeshes(body,state,cut)
-        for _,holder in ipairs(shellParts) do
+    -- Build the opaque backstop first. If a device cannot load all four
+    -- cavity components, do not open a see-through hole in the skin.
+    if body.Name~="Head" then
+        local ok,parts=pcall(cavityMeshes,body,state,cut)
+        if not ok or #parts<4 then
+            warn("Anatomy v15: couldn't build sealed wound cavity")
+            if ok then
+                for _,holder in ipairs(parts) do
+                    if holder.Parent then holder:Destroy() end
+                end
+            end
+            local index=table.find(state.cuts,cut)
+            if index then table.remove(state.cuts,index) end
+            return
+        end
+        for _,holder in ipairs(parts) do
             table.insert(woundParts,holder)
         end
+    end
+
+    local opened=updateSkin(body,state)
+    if not active or stopped or not body.Parent
+        or state.revision~=revision then
+        cleanupPending()
+        return
+    end
+    if not opened then
+        cleanupPending()
+        local index=table.find(state.cuts,cut)
+        if index then table.remove(state.cuts,index) end
+        if not state.skin then body.LocalTransparencyModifier=state.old end
+    end
+
+    if opened then
         local exposedBone=regionMesh(body,state,cut,"bone")
         if exposedBone then table.insert(woundParts,exposedBone) end
         if tier>=2 then
             local muscle=regionMesh(body,state,cut,"muscle")
             if muscle then table.insert(woundParts,muscle) end
         end
+        if not active or stopped or state.revision~=revision then
+            cleanupPending()
+            return
+        end
         if not exposedBone then
             local chip=localChip(body,state,cut)
             if chip then table.insert(woundParts,chip) end
         end
     elseif body.Name=="Head" then
-        -- No authorized head skin mesh: preserve intact face and use
-        -- only a localized skull fragment rather than false open geometry.
+        -- Head source is authorization-locked: no fake open skull cavity.
         local chip=localChip(body,state,cut)
         if chip then table.insert(woundParts,chip) end
     end
-    table.insert(state.woundParts,woundParts)
+    if opened or body.Name=="Head" then
+        table.insert(state.woundParts,woundParts)
+    end
 
     for _,mark in ipairs(marks) do
         local decal=mark:FindFirstChildWhichIsA("Decal")
