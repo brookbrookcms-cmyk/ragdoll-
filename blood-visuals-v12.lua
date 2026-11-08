@@ -512,7 +512,7 @@ local function regionMesh(body, state, cut, tissue)
     end
     local tint=tissue=="bone" and Color3.fromRGB(230,219,200)
         or Color3.fromRGB(175,82,87)
-    addPart(state,createMesh(body,
+    return addPart(state,createMesh(body,
         (tissue=="bone" and "Regional actual bones" or "Regional actual muscles"),
         id,materialAsset,tint,ratio,placement))
 end
@@ -628,10 +628,14 @@ local function showHit(body, hit, tier, marks)
     -- Écorché atlas: skull, ribs, pelvis, humerus, radius/ulna, carpals,
     -- phalanges, femur, tibia/fibula, tarsals and metatarsals.
     if opened or body.Name=="Head" then
-        regionMesh(body,state,cut,"bone")
+        local exposedBone=regionMesh(body,state,cut,"bone")
         if tier>=2 then regionMesh(body,state,cut,"muscle") end
-        if tier==1 then localChip(body,state,cut) end
-        buildRim(body,state,cut)
+        -- When a narrow cut misses the underlying triangles, fall back to
+        -- the proper anatomical chip for that body region, not a generic oval.
+        if not exposedBone then localChip(body,state,cut) end
+        -- Without an authorized head source we cannot cut its skin mesh.
+        -- Avoid drawing a deceptive large red circle over the intact face.
+        if opened then buildRim(body,state,cut) end
     end
 
     for _,mark in ipairs(marks) do
