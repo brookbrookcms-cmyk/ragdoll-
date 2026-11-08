@@ -500,59 +500,132 @@ local function chipFileFor(body)
     return "v10-limb-chip.mesh"
 end
 
+-- Restrained surface-based wounds. Do not scale imported bone/rim meshes:
+-- their native mesh units are much larger than Roblox body-part units.
+local function impactSurface(body, hit)
+    local n = normalAt(body, hit)
+    local reach = math.max(body.Size.Magnitude, 1.5)
+    local params = RaycastParams.new()
+    params.FilterType = Enum.RaycastFilterType.Include
+    params.FilterDescendantsInstances = {body}
+    params.IgnoreWater = true
+    local result = Workspace:Raycast(hit + n * reach, -n * reach * 2, params)
+    if result then
+        return result.Position, result.Normal
+    end
+
+    -- Wound marks are normally already placed on the skin.
+    -- A mark inside the mesh needs to be projected onto its bounding surface.
+    local p = body.CFrame:PointToObjectSpace(hit)
+    local half = body.Size * 0.5
+    local nx = math.abs(p.X) / math.max(half.X, 0.01)
+    local ny = math.abs(p.Y) / math.max(half.Y, 0.01)
+    local nz = math.abs(p.Z) / math.max(half.Z, 0.01)
+    if math.max(nx, ny, nz) >= 0.66 then return hit, n end
+
+    local x, y, z = p.X, p.Y, p.Z
+    local sign = function(v) return v >= 0 and 1 or -1 end
+    if nx >= ny and nx >= nz then
+        x = half.X * sign(x)
+        n = body.CFrame.RightVector * sign(x)
+    elseif ny >= nz then
+        y = half.Y * sign(y)
+        n = body.CFrame.UpVector * sign(y)
+    else
+        z = half.Z * sign(z)
+        n = -body.CFrame.LookVector * sign(z)
+    end
+    return body.CFrame:PointToWorldSpace(Vector3.new(x, y, z)), n
+end
+
+local function woundDiameter(body, normal, tier)
+    -- Use the face width, not the longest body axis: leg wounds must not
+    -- grow into leg-length tubes and arm wounds must not exceed the arm.
+    local localN = body.CFrame:VectorToObjectSpace(normal)
+    local ax, ay, az = math.abs(localN.X), math.abs(localN.Y), math.abs(localN.Z)
+    local faceWidth
+    if ax >= ay and ax >= az then
+        faceWidth = math.min(body.Size.Y, body.Size.Z)
+    elseif ay >= az then
+        faceWidth = math.min(body.Size.X, body.Size.Z)
+    else
+        faceWidth = math.min(body.Size.X, body.Size.Y)
+    end
+    local fraction = ({0.19, 0.44, 0.80})[tier]
+    return math.clamp(faceWidth * fraction, 0.085, 1.05)
+end
+
 local function drawImpact(body, hit, tier, markCount)
     if not active or stopped or not body.Parent then return end
 
-    local normal = normalAt(body, hit)
-    local tangent = normal:Cross(Vector3.new(0, 1, 0))
-    if tangent.Magnitude < 0.05 then
-        tangent = normal:Cross(Vector3.new(1, 0, 0))
-    end
-    tangent = tangent.Unit
-    local bitangent = tangent:Cross(normal).Unit
+    local point, normal = impactSurface(body, hit)
+    local diameter = woundDiameter(body, normal, tier)
+    local base = CFrame.lookAt(point, point + normal)
+        * CFrame.Angles(0, 0, rng:NextNumber(-math.pi, math.pi))
 
-    local major = math.max(body.Size.X, body.Size.Y, body.Size.Z)
-    local scale = ({0.15, 0.30, 0.61})[tier]
-    local diameter = math.clamp(major * scale, 0.11, tier == 3 and 1.25 or 0.65)
-
-    -- An outward-facing cutaway: a tiny puncture for a single mark,
-    -- a much broader exposed region for clustered/strong hits.
-    local orientation = CFrame.lookAt(hit + normal * 0.022, hit + normal)
-        * CFrame.Angles(0, math.pi * 0.5, 0)
-    temporaryPart(body, "Impact wound " .. tier,
-        Vector3.new(0.018, diameter, diameter * rng:NextNumber(0.82, 1.04)),
-        orientation, Color3.fromRGB(60, 11, 19),
-        tier == 1 and 0.08 or 0.18, Enum.PartType.Cylinder)
-    temporaryPart(body, "Exposed tissue",
-        Vector3.new(0.02, diameter * 0.74, diameter * 0.78),
-        orientation + normal * 0.009, Color3.fromRGB(152, 43, 50),
-        tier == 3 and 0.35 or 0.25, Enum.PartType.Cylinder)
-
-    local amounts = {1, 4, 8}
-    local count = math.min(IMPACT.MaximumPieces,
-        amounts[tier] + math.max(0, math.min(markCount - 1, 2)))
-    local chipFile = chipFileFor(body)
-    for i = 1, count do
-        local angle = rng:NextNumber(-math.pi, math.pi)
-        local spread = diameter * rng:NextNumber(0.10, 0.47)
-        local point = hit + tangent * math.cos(angle) * spread
-            + bitangent * math.sin(angle) * spread + normal * 0.03
-        local baseSize = ({0.23, 0.58, 1.15})[tier]
-        local amount = baseSize * rng:NextNumber(0.74, 1.18)
-        task.spawn(protrudingBone, body, point, chipFile, amount)
+    -- Thin ellipsoids flush with the skin. The red irregular edge and dark
+    -- center suggest depth without protruding anatomy or giant mesh spikes.
+    local function oval(name, width, height, depth, color, x, y, lift, angle)
+        if not active or stopped or not body.Parent then return end
+        local cf = base * CFrame.new(x or 0, y or 0, -(lift or 0.012))
+            * CFrame.Angles(0, 0, angle or 0)
+        return temporaryPart(body, name,
+            Vector3.new(width, height, depth), cf,
+            color, 0, Enum.PartType.Ball)
     end
 
-    -- Additional raised tissue around wider impacts, fitted to the hit,
-    -- not spread across every surface of the body part.
+    oval("Wound rim", diameter, diameter * rng:NextNumber(0.76, 0.92),
+        0.025, Color3.fromRGB(115, 33, 38), 0, 0, 0.010)
+    oval("Wound recess", diameter * 0.78, diameter * 0.68,
+        0.027, Color3.fromRGB(48, 12, 18), 0, 0, 0.017)
+    oval("Raw tissue", diameter * 0.29, diameter * 0.22,
+        0.025, Color3.fromRGB(133, 48, 50),
+        -diameter * 0.14, -diameter * 0.18, 0.022, 0.4)
+
     if tier >= 2 then
-        local ok, rimId = pcall(asset, "v10-tissue-rim.mesh")
-        if ok and active and body.Parent then
-            local cf = CFrame.lookAt(hit - normal * 0.018, hit + normal)
-            local rim = makeMesh(body, "Wide tissue edge",
-                rimId, anatomyAsset, Color3.fromRGB(195, 77, 81),
-                Vector3.new(diameter, diameter, diameter * 0.55), 0, cf)
-            table.insert(extras, rim)
-            Debris:AddItem(rim, IMPACT.Lifetime)
+        -- A couple of uneven flesh edges; no looping/tubular meshes.
+        local edgeCount = tier == 3 and 3 or 2
+        for i = 1, edgeCount do
+            local a = 2 * math.pi * i / edgeCount + rng:NextNumber(-0.35, 0.35)
+            local r = diameter * 0.29
+            oval("Irregular wound edge",
+                diameter * rng:NextNumber(0.15, 0.23),
+                diameter * rng:NextNumber(0.09, 0.15),
+                0.022, Color3.fromRGB(147, 51, 55),
+                math.cos(a) * r, math.sin(a) * r, 0.025, a)
+        end
+    end
+
+    -- For deeper injuries, small pale fragments remain *inside* the wound
+    -- boundary. No native v10 chip mesh and no full-body anatomy replacement.
+    if tier >= 2 then
+        local limb = body.Name == "Head"
+            or body.Name:find("Arm") or body.Name:find("Leg")
+            or body.Name:find("Hand") or body.Name:find("Foot")
+        if limb or body.Name == "UpperTorso" then
+            local boneWidth = diameter * (tier == 3 and 0.43 or 0.23)
+            oval("Exposed bone", boneWidth,
+                diameter * (tier == 3 and 0.18 or 0.12),
+                0.024, Color3.fromRGB(206, 190, 163),
+                diameter * 0.07, diameter * 0.04, 0.026, -0.35)
+        end
+    end
+
+    local pieces = tier == 3 and 3 or (tier == 2 and 1 or 0)
+    pieces = math.min(4, pieces + math.max(0, markCount - 3))
+    for i = 1, pieces do
+        local a = rng:NextNumber(0, math.pi * 2)
+        local r = diameter * rng:NextNumber(0.10, 0.29)
+        local sz = diameter * rng:NextNumber(0.06, 0.11)
+        oval("Embedded fragment", sz, sz * rng:NextNumber(0.38, 0.75),
+            0.024, Color3.fromRGB(186, 167, 146),
+            math.cos(a) * r, math.sin(a) * r,
+            0.030, a)
+    end
+
+    if #extras > 480 then
+        for i = #extras, 1, -1 do
+            if not extras[i].Parent then table.remove(extras, i) end
         end
     end
 end
@@ -561,35 +634,25 @@ local function processWoundBatch(batch)
     if stopped or not active or batch.epoch ~= impactEpoch then return end
     local body = batch.body
     if not body.Parent then return end
-    local wounds = {}
     local tier = 1
+    local validCount = 0
     for _, wound in ipairs(batch.wounds) do
         if wound.Parent then
-            table.insert(wounds, wound)
+            validCount = validCount + 1
             tier = math.max(tier, severityForWound(wound))
         end
     end
-    if #wounds == 0 then return end
-    if #wounds >= IMPACT.HeavyMarks then
+    if validCount == 0 then return end
+    if validCount >= IMPACT.HeavyMarks then
         tier = 3
-    elseif #wounds >= IMPACT.MediumMarks then
+    elseif validCount >= IMPACT.MediumMarks then
         tier = math.max(tier, 2)
     end
 
-    local hit = wounds[1].Position
-    -- A v10 hole is baked into its mesh. Preserve it for mid/heavy hits,
-    -- while using localized geometry for small hits and later strikes.
-    if tier >= 2 and not states[body] then
-        legacyWoundEffect(wounds[1])
-        if stopped or not active or batch.epoch ~= impactEpoch then return end
-    end
-
-    if tier == 3 and body.Name == "Head" and states[body] then
-        -- Show the underlying skull/muscle model for a major head impact.
-        -- restore() resets this when the effect is switched off.
-        body.LocalTransparencyModifier = 1
-    end
-    drawImpact(body, hit, tier, #wounds)
+    -- Never call the legacy full-anatomy function: it hides the complete
+    -- body mesh and exposes huge, non-localized anatomy on one hit.
+    local hit = body.CFrame:PointToWorldSpace(batch.localCenter)
+    drawImpact(body, hit, tier, validCount)
 end
 
 local function queueWound(wound)
@@ -601,17 +664,18 @@ local function queueWound(wound)
         batches = {}
         pendingWounds[body] = batches
     end
-    local radius = math.clamp(body.Size.Magnitude * 0.6, 0.65, 1.4)
+    local localHit = body.CFrame:PointToObjectSpace(wound.Position)
+    local radius = math.clamp(body.Size.Magnitude * 0.42, 0.35, 0.95)
     for _, batch in ipairs(batches) do
-        if (batch.center - wound.Position).Magnitude <= radius then
+        if (batch.localCenter - localHit).Magnitude <= radius then
             table.insert(batch.wounds, wound)
             local n = #batch.wounds
-            batch.center = batch.center:Lerp(wound.Position, 1 / n)
+            batch.localCenter = batch.localCenter:Lerp(localHit, 1 / n)
             return
         end
     end
     local batch = {
-        body = body, center = wound.Position, wounds = {wound},
+        body = body, localCenter = localHit, wounds = {wound},
         epoch = impactEpoch,
     }
     table.insert(batches, batch)
@@ -659,10 +723,7 @@ table.insert(connections, button.MouseButton1Click:Connect(function()
         return
     end
     updateButton("LOADING...")
-    local ok, result = pcall(asset, "anatomy-materials.png")
-    if not ok then warn(result); updateButton("ASSET FAILED"); return end
-    anatomyAsset = result
-    ok, result = pcall(asset, "blood-atlas.png")
+    local ok, result = pcall(asset, "blood-atlas.png")
     if not ok then warn(result); updateButton("ASSET FAILED"); return end
     bloodAsset = result
     active = true
