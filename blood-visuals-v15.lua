@@ -1,4 +1,4 @@
--- blood-visuals-v15.lua | Roblox Luau client | full-triangle anatomical cutaway renderer
+-- blood-visuals-v15.lua | Roblox Luau client | fitted anatomical cutaway renderer
 -- Regional anatomical cutaways: source meshes retain actual bone and muscle topology.
 -- Anatomical source and attribution: ANATOMY_ATTRIBUTION.md (CC BY-SA 4.0).
 -- The 206-bone count describes the source atlas, not 206 simulated rigid bodies.
@@ -32,6 +32,7 @@ local SOURCE_SIZE = {
     RightFoot=Vector3.new(0.8362,0.6279,1.2425),
 }
 local EXPECTED = {
+    Head="123480233606534",
     UpperTorso="8650495328", LowerTorso="8650495385",
     RightUpperArm="8650495303", RightLowerArm="8650495271",
     RightHand="8650495280", LeftUpperArm="8650495273",
@@ -41,6 +42,7 @@ local EXPECTED = {
     RightLowerLeg="8650495379", RightFoot="8650495330",
 }
 local PART_KEYS = {
+    Head="head",
     UpperTorso="upper_torso", LowerTorso="lower_torso",
     RightUpperArm="right_upper_arm", RightLowerArm="right_lower_arm",
     RightHand="right_hand", LeftUpperArm="left_upper_arm",
@@ -54,12 +56,11 @@ local active, stopped = false, false
 local rng = Random.new()
 local states, extras, connections = {}, {}, {}
 local bytesCache, parsedCache = {}, {}
-local pending, epoch, fileSerial = {}, 0, 0
+local pending, bodyJobs, epoch, fileSerial = {}, {}, 0, 0
 local bloodAsset, materialAsset
 local staticAssetIds = {}
 local BATCH_WINDOW = 0.19
 local MAX_CUTS = 4
-local MAX_WOUND_PARTS = 16
 local MAX_ANATOMY_FACES = 8500
 local MAX_SKIN_FACES = 24000
 
@@ -142,7 +143,7 @@ end
 
 local function parsedMesh(filename)
     if parsedCache[filename] then return parsedCache[filename] end
-    if not buffer or not buffer.fromstring or not buffer.copy then
+    if not buffer or not buffer.fromstring then
         error("v15 needs the Roblox Luau buffer library")
     end
     local b = buffer.fromstring(readBytes(filename))
@@ -215,38 +216,6 @@ local function surfacePoint(body, hit)
     local result = Workspace:Raycast(hit+normal*distance, -normal*distance*2, params)
     if result then return result.Position, result.Normal end
     return hit, normal
-end
-
-local function chooseVariant(body, localHit)
-    local half = body.Size * 0.5
-    local nx = localHit.X/math.max(half.X,0.01)
-    local ny = localHit.Y/math.max(half.Y,0.01)
-    local nz = localHit.Z/math.max(half.Z,0.01)
-    local name = body.Name
-    if name:find("Foot") then
-        if math.abs(ny)>math.abs(nz)*0.8 then
-            if nz < -0.22 then return "top_toes" end
-            if nz > 0.22 then return "top_heel" end
-            return "top_center"
-        end
-        return "front_center"
-    end
-    if name:find("Hand") then
-        if math.abs(ny)>math.abs(nz) then return "top_center" end
-        return ny < -0.22 and "front_fingers" or "front_center"
-    end
-    if math.abs(nx)>math.abs(nz)*1.1 then return "side_center" end
-    if name:find("Torso") then
-        if math.abs(nx)>0.25 and math.abs(nx)>math.abs(ny) then
-            return nx < 0 and "front_left" or "front_right"
-        end
-        if ny>0.27 then return "front_upper" end
-        if ny< -0.27 then return "front_lower" end
-        return "front_center"
-    end
-    if ny>0.25 then return "front_upper" end
-    if ny< -0.25 then return "front_lower" end
-    return "front_center"
 end
 
 local function createMesh(body, name, meshId, textureId, tint, scale, cf)
@@ -414,93 +383,7 @@ local function appendFan(rows,poly,maxFaces)
 end
 
 
--- All available v10 source skins contain a pre-existing through-hole.
--- Close that old hole on both surfaces unless it coincides with our hit.
--- This prevents an unrelated second opening and the view through its back.
-local function closeLegacyHole(rows,body,cuts,ratio,variant)
-    local mode="Z"
-    if variant=="side_center" then mode="X"
-    elseif variant:find("top_",1,true)==1 then mode="Y" end
-
-    local center=Vector3.zero
-    if variant=="front_left" then
-        center=Vector3.new(-body.Size.X*0.22,0,0)
-    elseif variant=="front_right" then
-        center=Vector3.new(body.Size.X*0.22,0,0)
-    elseif variant=="front_upper" then
-        local amount=body.Name:find("Torso") and 0.22 or 0.24
-        center=Vector3.new(0,body.Size.Y*amount,0)
-    elseif variant=="front_lower" then
-        local amount=body.Name:find("Torso") and 0.22 or 0.24
-        center=Vector3.new(0,-body.Size.Y*amount,0)
-    elseif variant=="front_fingers" then
-        center=Vector3.new(0,-body.Size.Y*0.24,0)
-    elseif variant=="top_toes" then
-        center=Vector3.new(0,0,-body.Size.Z*0.26)
-    elseif variant=="top_heel" then
-        center=Vector3.new(0,0,body.Size.Z*0.26)
-    end
-
-    local shortest=math.min(body.Size.X,body.Size.Y,body.Size.Z)
-    local holeRadius=shortest*(body.Name:find("Torso") and 0.13 or 0.15)
-    local closureRadius=holeRadius*1.18
-    local segments=28
-
-    local function toRow(position,normal,u,v)
-        local localPoint=Vector3.new(position.X/ratio.X,
-            position.Y/ratio.Y,position.Z/ratio.Z)
-        local sourceN=Vector3.new(normal.X*ratio.X,
-            normal.Y*ratio.Y,normal.Z*ratio.Z).Unit
-        return {localPoint.X,localPoint.Y,localPoint.Z,
-            sourceN.X,sourceN.Y,sourceN.Z,u,v,0}
-    end
-
-    for _,sign in ipairs({-1,1}) do
-        local n=mode=="X" and Vector3.new(sign,0,0)
-            or mode=="Y" and Vector3.new(0,sign,0)
-            or Vector3.new(0,0,sign)
-        local p=center
-        if mode=="X" then p=p+Vector3.new(sign*body.Size.X*0.41,0,0)
-        elseif mode=="Y" then p=p+Vector3.new(0,sign*body.Size.Y*0.41,0)
-        else p=p+Vector3.new(0,0,sign*body.Size.Z*0.41) end
-
-        local covered=false
-        for _,cut in ipairs(cuts) do
-            local near=(cut.p-p).Magnitude
-            if near<cut.r+holeRadius*0.72 and cut.n:Dot(n)>0.58 then
-                covered=true
-                break
-            end
-        end
-        if not covered then
-            local up=math.abs(n.Y)>0.9 and Vector3.new(1,0,0)
-                or Vector3.new(0,1,0)
-            local tangent=up:Cross(n).Unit
-            local bitangent=n:Cross(tangent).Unit
-            local inner=p-n*0.018
-            local centerRow=toRow(inner,n,0.5,0.5)
-            for i=1,segments do
-                local a=2*math.pi*(i-1)/segments
-                local b=2*math.pi*i/segments
-                local pa=inner+tangent*math.cos(a)*closureRadius
-                    +bitangent*math.sin(a)*closureRadius
-                local pb=inner+tangent*math.cos(b)*closureRadius
-                    +bitangent*math.sin(b)*closureRadius
-                local tri={
-                    centerRow,
-                    toRow(pa,n,0.5+math.cos(a)*0.10,0.5+math.sin(a)*0.10),
-                    toRow(pb,n,0.5+math.cos(b)*0.10,0.5+math.sin(b)*0.10),
-                }
-                if not appendFan(rows,tri,MAX_SKIN_FACES) then
-                    return false
-                end
-            end
-        end
-    end
-    return true
-end
-
-local function skinMesh(source,body,cuts,variant)
+local function skinMesh(source,body,cuts)
     local ratio=ratioFor(body)
     local planes={}
     for i,cut in ipairs(cuts) do
@@ -537,9 +420,6 @@ local function skinMesh(source,body,cuts,variant)
         end
         if face>0 and face%1700==0 then task.wait() end
     end
-    if not closeLegacyHole(rows,body,cuts,ratio,variant) then
-        return nil
-    end
     return triangleMesh(rows)
 end
 
@@ -548,14 +428,6 @@ local function cutDepth(body, cut)
     local half = body.Size*0.5
     return 2*(math.abs(n.X)*half.X+
         math.abs(n.Y)*half.Y+math.abs(n.Z)*half.Z)
-end
-
-local function testCut(body, ratio, cut, x, y, z)
-    local p = Vector3.new(x*ratio.X,y*ratio.Y,z*ratio.Z)
-    local d = p-cut.p
-    local depth = -d:Dot(cut.n)
-    local lateral = (d+cut.n*depth).Magnitude
-    return lateral, depth
 end
 
 local function radiusFor(body, normal, tier)
@@ -573,37 +445,37 @@ local function radiusFor(body, normal, tier)
         0.055, tier==3 and 0.55 or 0.34)
 end
 
--- The damaged body mesh already has an irregular opening.
--- A giant artificial red polygon ring made v12 look like a hollow sticker.
--- Keep the edge bare so the actual regional meshes provide the detail.
-local function buildRim(body,state,cut)
-    return
-end
-
-
 local function bodyTexture(body)
-    local shirt=body.Parent and body.Parent:FindFirstChildOfClass("Shirt")
-    local texture=shirt and shirt.ShirtTemplate or ""
-    if texture=="" then texture=body.TextureID end
-    return texture
+    local model=body.Parent
+    if body.Name=="Head" then return body.TextureID end
+    local garment
+    if body.Name=="LowerTorso" or body.Name:find("Leg")
+        or body.Name:find("Foot") then
+        garment=model and model:FindFirstChildOfClass("Pants")
+        if garment and garment.PantsTemplate~="" then
+            return garment.PantsTemplate
+        end
+    else
+        garment=model and model:FindFirstChildOfClass("Shirt")
+        if garment and garment.ShirtTemplate~="" then
+            return garment.ShirtTemplate
+        end
+    end
+    return body.TextureID
 end
 
 local function updateSkin(body, state)
     local revision=state.revision
-    -- The original NPC head geometry is locked, so we cannot cut it.
-    -- A false result prevents anatomy from floating over intact skin.
-    if body.Name=="Head" then return false end
     local expect=EXPECTED[body.Name]
     if not expect or not tostring(body.MeshId):find(expect,1,true) then
         warn("Anatomy v15: unknown base mesh for " .. body.Name)
         return false
     end
-    local sourceName="v10-hole-" .. PART_KEYS[body.Name]
-        .. "-" .. state.variant .. ".mesh"
+    local sourceName="v15-clean-" .. PART_KEYS[body.Name] .. ".mesh"
     local sourceOk, source=pcall(parsedMesh,sourceName)
     if not sourceOk then warn(source); return false end
     local ratio=ratioFor(body)
-    local ok, raw=pcall(skinMesh,source,body,state.cuts,state.variant)
+    local ok, raw=pcall(skinMesh,source,body,state.cuts)
     if not ok or not raw then
         warn("Anatomy v15: fitted skin generation failed")
         return false
@@ -621,6 +493,16 @@ local function updateSkin(body, state)
     end
     if state.skin then
         body.LocalTransparencyModifier=1
+        if body.Name=="Head" then
+            for _,decal in ipairs(body:GetChildren()) do
+                if decal:IsA("Decal") then
+                    if state.decals[decal]==nil then
+                        state.decals[decal]=decal.Transparency
+                    end
+                    decal.Transparency=1
+                end
+            end
+        end
         return true
     end
     return false
@@ -637,7 +519,7 @@ local function clipAnatomy(source,body,cut,tissue)
 
     local b=source.buf
     local rows={}
-    local maxFaces=tissue=="bone" and MAX_ANATOMY_FACES or 3200
+    local maxFaces=MAX_ANATOMY_FACES
     local r=cut.r
     local n=cut.n
     local surfaceDepth=cutDepth(body,cut)*0.48
@@ -652,17 +534,20 @@ local function clipAnatomy(source,body,cut,tissue)
             local a=25+i0*36
             local bb=25+i1*36
             local c=25+i2*36
-            local x=(buffer.readf32(b,a)+buffer.readf32(b,bb)
-                +buffer.readf32(b,c))/3*ratio.X
-            local y=(buffer.readf32(b,a+4)+buffer.readf32(b,bb+4)
-                +buffer.readf32(b,c+4))/3*ratio.Y
-            local z=(buffer.readf32(b,a+8)+buffer.readf32(b,bb+8)
-                +buffer.readf32(b,c+8))/3*ratio.Z
-            local delta=Vector3.new(x,y,z)-cut.p
+            local va=Vector3.new(buffer.readf32(b,a)*ratio.X,
+                buffer.readf32(b,a+4)*ratio.Y,buffer.readf32(b,a+8)*ratio.Z)
+            local vb=Vector3.new(buffer.readf32(b,bb)*ratio.X,
+                buffer.readf32(b,bb+4)*ratio.Y,buffer.readf32(b,bb+8)*ratio.Z)
+            local vc=Vector3.new(buffer.readf32(b,c)*ratio.X,
+                buffer.readf32(b,c+4)*ratio.Y,buffer.readf32(b,c+8)*ratio.Z)
+            local center=(va+vb+vc)/3
+            local reach=math.max((va-center).Magnitude,
+                (vb-center).Magnitude,(vc-center).Magnitude)
+            local delta=center-cut.p
             local depth=-delta:Dot(n)
             local sideways=(delta+n*depth).Magnitude
-            if sideways<r*1.85 and depth>-0.18
-                and depth<surfaceDepth+0.18 then
+            if sideways<r*1.1+reach and depth>-(0.04+reach)
+                and depth<surfaceDepth+0.04+reach then
                 local clipped=intersectVolume({
                     meshVertex(b,i0),meshVertex(b,i1),meshVertex(b,i2)
                 },cut,outerPlanes,ratio)
@@ -712,130 +597,6 @@ local function regionMesh(body, state, cut, tissue)
 end
 
 
-
--- V15 wound shell: an actual enclosed, concave cavity in the same local
--- coordinates as the skin cut. The dark backing prevents seeing through
--- to the map/ground. The shallow irregular wall adds depth without the
--- enormous freestanding rings that ruined V11-V12.
-local function cavityMeshes(body,state,cut)
-    local n=cut.n
-    local up=math.abs(n.Y)>0.90 and Vector3.new(1,0,0)
-        or Vector3.new(0,1,0)
-    local tangent=up:Cross(n).Unit
-    local bitangent=n:Cross(tangent).Unit
-    local thickness=cutDepth(body,cut)
-    local depth=math.min(thickness*0.74,
-        math.max(thickness*0.62,cut.r*1.25))
-    depth=math.max(depth,0.09)
-    local segments=24
-    local jitter={}
-    local phase=(cut.p.X*13+cut.p.Y*23+cut.p.Z*11)
-    for i=1,segments do
-        local a=2*math.pi*(i-1)/segments
-        jitter[i]=math.clamp(1+0.06*math.sin(a*3+phase)
-            +0.045*math.sin(a*7-phase),0.88,1.12)
-    end
-
-    local function vertex(i,r,d)
-        local a=2*math.pi*(i-1)/segments
-        local j=(i-1)%segments+1
-        local radius=cut.r*r*jitter[j]
-        -- Subtle elliptical distortion, shared by every depth layer.
-        local place=cut.p+tangent*(math.cos(a)*radius)
-            +bitangent*(math.sin(a)*radius*0.89)-n*d
-        return place
-    end
-
-    local function asRow(pos,normal,u,v)
-        local source=ratioFor(body)
-        local p=Vector3.new(
-            pos.X/source.X,pos.Y/source.Y,pos.Z/source.Z)
-        local nn=Vector3.new(normal.X*source.X,
-            normal.Y*source.Y,normal.Z*source.Z).Unit
-        return {p.X,p.Y,p.Z,nn.X,nn.Y,nn.Z,u,v,0}
-    end
-
-    local function band(name,outerRadius,outerDepth,innerRadius,innerDepth,color)
-        local triangles={}
-        for i=1,segments do
-            local j=i%segments+1
-            local outerA=vertex(i,outerRadius,outerDepth)
-            local outerB=vertex(j,outerRadius,outerDepth)
-            local innerA=vertex(i,innerRadius,innerDepth)
-            local innerB=vertex(j,innerRadius,innerDepth)
-            local radial=(outerA-cut.p).Unit
-            local wallNormal=(n*0.46+radial*0.54).Unit
-            local function addTriangle(p1,p2,p3)
-                triangles[#triangles+1]=asRow(p1,wallNormal,0.7,0.7)
-                triangles[#triangles+1]=asRow(p2,wallNormal,0.7,0.7)
-                triangles[#triangles+1]=asRow(p3,wallNormal,0.7,0.7)
-            end
-            addTriangle(outerA,outerB,innerB)
-            addTriangle(outerA,innerB,innerA)
-        end
-        local raw=triangleMesh(triangles)
-        local ok,id=pcall(customAsset,"shell-"..name..".mesh",raw)
-        if not ok or not active or stopped or not body.Parent then return end
-        return addPart(state,createMesh(body,name,id,"",color,
-            Vector3.new(1,1,1),body.CFrame))
-    end
-
-    local parts={}
-    local rimTint=Color3.fromRGB(121,53,60)
-    local wallTint=Color3.fromRGB(103,42,48)
-    local innerTint=Color3.fromRGB(70,27,37)
-    local lip=band("Fine wound edge",1.015,0.005,0.955,0.025,rimTint)
-    if lip then parts[#parts+1]=lip end
-    local soft=band("Recessed tissue wall",0.955,0.025,
-        0.82,depth*0.56,wallTint)
-    if soft then parts[#parts+1]=soft end
-    local inner=band("Deep tissue wall",0.82,depth*0.56,
-        0.79,depth*0.98,innerTint)
-    if inner then parts[#parts+1]=inner end
-
-    -- The back plate sits behind the regional bones. It is opaque,
-    -- dark, and triangulated with the same wound outline.
-    local cap={}
-    local center=cut.p-n*depth
-    local centerRow=asRow(center,n,0.75,0.75)
-    for i=1,segments do
-        local a=vertex(i,0.80,depth)
-        local b=vertex(i%segments+1,0.80,depth)
-        cap[#cap+1]=centerRow
-        cap[#cap+1]=asRow(a,n,0.75,0.75)
-        cap[#cap+1]=asRow(b,n,0.75,0.75)
-    end
-    local capRaw=triangleMesh(cap)
-    local ok,capId=pcall(customAsset,"opaque-wound-backing.mesh",capRaw)
-    if ok and active and not stopped and body.Parent then
-        local holder=addPart(state,createMesh(body,
-            "Opaque internal wound backing",capId,"",
-            Color3.fromRGB(34,13,20),Vector3.new(1,1,1),body.CFrame))
-        if holder then parts[#parts+1]=holder end
-    end
-    return parts
-end
-
-local function chipFile(body)
-    local name=body.Name
-    if name=="Head" then return "v10-skull-chip.mesh" end
-    if name:find("Foot") then return "v10-foot-chip.mesh" end
-    if name:find("Hand") then return "v10-hand-chip.mesh" end
-    return "v10-limb-chip.mesh"
-end
-
-local function localChip(body, state, cut)
-    local ok, id=pcall(staticAsset,chipFile(body))
-    if not ok or not active or stopped or not body.Parent then return end
-    local n=body.CFrame:VectorToWorldSpace(cut.n)
-    local at=body.CFrame:PointToWorldSpace(cut.p)
-    local cf=CFrame.lookAt(at+n*0.017,at+n)
-        * CFrame.Angles(0,0,rng:NextNumber(-3.14,3.14))
-    local scale=math.clamp(cut.r*1.1,0.12,0.36)
-    return addPart(state,createMesh(body,"Part-specific bone shard",id,
-        materialAsset,Color3.fromRGB(224,213,195),
-        Vector3.new(scale,scale,scale),cf))
-end
 
 local function restore()
     for body,state in pairs(states) do
@@ -907,21 +668,12 @@ local function showHit(body, hit, tier, marks)
     local state=states[body]
     if not state then
         state={old=body.LocalTransparencyModifier,parts={},decals={},
-            cuts={},woundParts={},skin=nil,revision=0,
-            variant=chooseVariant(body,pos)}
+            cuts={},woundParts={},skin=nil,revision=0}
         states[body]=state
     end
 
-    -- A tiny isolated hit must not invoke a pre-cut body mesh: the
-    -- existing v10 asset opening can be bigger than the entire hit.
-    -- Preserve original skin and its decals for tier-one shots.
-    if tier==1 then
-        local chip=localChip(body,state,cut)
-        if chip then Debris:AddItem(chip,18) end
-        return
-    end
-    -- Nearby shots expand or replace the existing cut rather than stacking
-    -- identical bone meshes at exactly the same position.
+    -- Every hit cuts the clean source mesh, including a single small shot.
+    -- Nearby shots expand or replace the existing cut.
     for i=#state.cuts,1,-1 do
         local oldCut=state.cuts[i]
         if (oldCut.p-cut.p).Magnitude < math.max(oldCut.r,cut.r)*0.68
@@ -959,26 +711,6 @@ local function showHit(body, hit, tier, marks)
         end
     end
 
-    -- Build the opaque backstop first. If a device cannot load all four
-    -- cavity components, do not open a see-through hole in the skin.
-    if body.Name~="Head" then
-        local ok,parts=pcall(cavityMeshes,body,state,cut)
-        if not ok or #parts<4 then
-            warn("Anatomy v15: couldn't build sealed wound cavity")
-            if ok then
-                for _,holder in ipairs(parts) do
-                    if holder.Parent then holder:Destroy() end
-                end
-            end
-            local index=table.find(state.cuts,cut)
-            if index then table.remove(state.cuts,index) end
-            return
-        end
-        for _,holder in ipairs(parts) do
-            table.insert(woundParts,holder)
-        end
-    end
-
     local opened=updateSkin(body,state)
     if not active or stopped or not body.Parent
         or state.revision~=revision then
@@ -995,24 +727,14 @@ local function showHit(body, hit, tier, marks)
     if opened then
         local exposedBone=regionMesh(body,state,cut,"bone")
         if exposedBone then table.insert(woundParts,exposedBone) end
-        if tier>=2 then
-            local muscle=regionMesh(body,state,cut,"muscle")
-            if muscle then table.insert(woundParts,muscle) end
-        end
+        local muscle=regionMesh(body,state,cut,"muscle")
+        if muscle then table.insert(woundParts,muscle) end
         if not active or stopped or state.revision~=revision then
             cleanupPending()
             return
         end
-        if not exposedBone then
-            local chip=localChip(body,state,cut)
-            if chip then table.insert(woundParts,chip) end
-        end
-    elseif body.Name=="Head" then
-        -- Head source is authorization-locked: no fake open skull cavity.
-        local chip=localChip(body,state,cut)
-        if chip then table.insert(woundParts,chip) end
     end
-    if opened or body.Name=="Head" then
+    if opened then
         table.insert(state.woundParts,woundParts)
     end
 
@@ -1042,8 +764,24 @@ local function processBatch(batch)
     if #live>=3 then tier=3
     elseif #live>=2 then tier=math.max(tier,2) end
     local hit=body.CFrame:PointToWorldSpace(batch.localCenter)
-    local success,err=pcall(showHit,body,hit,tier,live)
-    if not success then warn("Anatomy v15 hit: "..tostring(err)) end
+    local jobs=bodyJobs[body]
+    if not jobs then
+        jobs={}
+        bodyJobs[body]=jobs
+    end
+    jobs[#jobs+1]={hit=hit,tier=tier,marks=live,epoch=epoch}
+    if #jobs>1 then return end
+    task.spawn(function()
+        while #jobs>0 do
+            local job=jobs[1]
+            if active and not stopped and job.epoch==epoch and body.Parent then
+                local success,err=pcall(showHit,body,job.hit,job.tier,job.marks)
+                if not success then warn("Anatomy v15 hit: "..tostring(err)) end
+            end
+            table.remove(jobs,1)
+        end
+        if bodyJobs[body]==jobs then bodyJobs[body]=nil end
+    end)
 end
 
 local function queueMark(mark)
@@ -1104,6 +842,7 @@ table.insert(connections,button.MouseButton1Click:Connect(function()
         active=false
         epoch=epoch+1
         table.clear(pending)
+        table.clear(bodyJobs)
         restore()
         updateButton()
         return
@@ -1144,6 +883,7 @@ env.RagdollGoreV15Stop=function()
     active=false
     epoch=epoch+1
     table.clear(pending)
+    table.clear(bodyJobs)
     for _,connection in ipairs(connections) do connection:Disconnect() end
     restore()
     gui:Destroy()
