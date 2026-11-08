@@ -23,6 +23,7 @@ local EXPECTED = {
     RightLowerLeg = "8650495379", RightFoot = "8650495330",
 }
 local SOURCE_SIZE = {
+    Head = Vector3.new(1.1962, 1.2029, 1.1979),
     UpperTorso = Vector3.new(1.8154, 1.7732, 1.1102),
     LowerTorso = Vector3.new(1.6962, 0.5661, 0.9525),
     RightUpperArm = Vector3.new(0.5699, 1.0948, 0.7828),
@@ -247,6 +248,28 @@ local function woundEffect(wound)
     local decal = wound:FindFirstChildWhichIsA("Decal")
     if body.Name == "Head" then
         task.spawn(protrudingBone, body, hit, "v10-skull-chip.mesh", 0.85)
+        if not states[body] then
+            local boneOk, boneId = pcall(asset, "v10-anatomy-head-bone.mesh")
+            local muscleOk, muscleId = pcall(asset, "v10-anatomy-head-muscle.mesh")
+            if boneOk and muscleOk and active and body.Parent then
+                local ratio = scaleRatio(body) * 0.78
+                local state = {old = body.LocalTransparencyModifier,
+                    parts = {}, decals = {}}
+                local good = pcall(function()
+                    table.insert(state.parts, makeMesh(body, "Skull anatomy",
+                        boneId, anatomyAsset, Color3.new(1, 1, 1), ratio, 0))
+                    table.insert(state.parts, makeMesh(body, "Head muscles",
+                        muscleId, anatomyAsset, Color3.new(1, 1, 1), ratio, 0))
+                end)
+                if good then
+                    states[body] = state
+                else
+                    for _, item in ipairs(state.parts) do
+                        if item.Parent then item:Destroy() end
+                    end
+                end
+            end
+        end
         return
     end
     if not EXPECTED[body.Name]
