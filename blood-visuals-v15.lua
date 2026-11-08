@@ -413,7 +413,94 @@ local function appendFan(rows,poly,maxFaces)
     return true
 end
 
-local function skinMesh(source,body,cuts)
+
+-- All available v10 source skins contain a pre-existing through-hole.
+-- Close that old hole on both surfaces unless it coincides with our hit.
+-- This prevents an unrelated second opening and the view through its back.
+local function closeLegacyHole(rows,body,cuts,ratio,variant)
+    local mode="Z"
+    if variant=="side_center" then mode="X"
+    elseif variant:find("top_",1,true)==1 then mode="Y" end
+
+    local center=Vector3.zero
+    if variant=="front_left" then
+        center=Vector3.new(-body.Size.X*0.22,0,0)
+    elseif variant=="front_right" then
+        center=Vector3.new(body.Size.X*0.22,0,0)
+    elseif variant=="front_upper" then
+        local amount=body.Name:find("Torso") and 0.22 or 0.24
+        center=Vector3.new(0,body.Size.Y*amount,0)
+    elseif variant=="front_lower" then
+        local amount=body.Name:find("Torso") and 0.22 or 0.24
+        center=Vector3.new(0,-body.Size.Y*amount,0)
+    elseif variant=="front_fingers" then
+        center=Vector3.new(0,-body.Size.Y*0.24,0)
+    elseif variant=="top_toes" then
+        center=Vector3.new(0,0,-body.Size.Z*0.26)
+    elseif variant=="top_heel" then
+        center=Vector3.new(0,0,body.Size.Z*0.26)
+    end
+
+    local shortest=math.min(body.Size.X,body.Size.Y,body.Size.Z)
+    local holeRadius=shortest*(body.Name:find("Torso") and 0.13 or 0.15)
+    local closureRadius=holeRadius*1.18
+    local segments=28
+
+    local function toRow(position,normal,u,v)
+        local localPoint=Vector3.new(position.X/ratio.X,
+            position.Y/ratio.Y,position.Z/ratio.Z)
+        local sourceN=Vector3.new(normal.X*ratio.X,
+            normal.Y*ratio.Y,normal.Z*ratio.Z).Unit
+        return {localPoint.X,localPoint.Y,localPoint.Z,
+            sourceN.X,sourceN.Y,sourceN.Z,u,v,0}
+    end
+
+    for _,sign in ipairs({-1,1}) do
+        local n=mode=="X" and Vector3.new(sign,0,0)
+            or mode=="Y" and Vector3.new(0,sign,0)
+            or Vector3.new(0,0,sign)
+        local p=center
+        if mode=="X" then p=p+Vector3.new(sign*body.Size.X*0.41,0,0)
+        elseif mode=="Y" then p=p+Vector3.new(0,sign*body.Size.Y*0.41,0)
+        else p=p+Vector3.new(0,0,sign*body.Size.Z*0.41) end
+
+        local covered=false
+        for _,cut in ipairs(cuts) do
+            local near=(cut.p-p).Magnitude
+            if near<cut.r+holeRadius*0.72 and cut.n:Dot(n)>0.58 then
+                covered=true
+                break
+            end
+        end
+        if not covered then
+            local up=math.abs(n.Y)>0.9 and Vector3.new(1,0,0)
+                or Vector3.new(0,1,0)
+            local tangent=up:Cross(n).Unit
+            local bitangent=n:Cross(tangent).Unit
+            local inner=p-n*0.018
+            local centerRow=toRow(inner,n,0.5,0.5)
+            for i=1,segments do
+                local a=2*math.pi*(i-1)/segments
+                local b=2*math.pi*i/segments
+                local pa=inner+tangent*math.cos(a)*closureRadius
+                    +bitangent*math.sin(a)*closureRadius
+                local pb=inner+tangent*math.cos(b)*closureRadius
+                    +bitangent*math.sin(b)*closureRadius
+                local tri={
+                    centerRow,
+                    toRow(pa,n,0.5+math.cos(a)*0.10,0.5+math.sin(a)*0.10),
+                    toRow(pb,n,0.5+math.cos(b)*0.10,0.5+math.sin(b)*0.10),
+                }
+                if not appendFan(rows,tri,MAX_SKIN_FACES) then
+                    return false
+                end
+            end
+        end
+    end
+    return true
+end
+
+local function skinMesh(source,body,cuts,variant)
     local ratio=ratioFor(body)
     local planes={}
     for i,cut in ipairs(cuts) do
@@ -449,6 +536,9 @@ local function skinMesh(source,body,cuts)
             end
         end
         if face>0 and face%1700==0 then task.wait() end
+    end
+    if not closeLegacyHole(rows,body,cuts,ratio,variant) then
+        return nil
     end
     return triangleMesh(rows)
 end
@@ -513,7 +603,7 @@ local function updateSkin(body, state)
     local sourceOk, source=pcall(parsedMesh,sourceName)
     if not sourceOk then warn(source); return false end
     local ratio=ratioFor(body)
-    local ok, raw=pcall(skinMesh,source,body,state.cuts)
+    local ok, raw=pcall(skinMesh,source,body,state.cuts,state.variant)
     if not ok or not raw then
         warn("Anatomy v15: fitted skin generation failed")
         return false
