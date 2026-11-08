@@ -8,7 +8,7 @@ local Workspace = game:GetService("Workspace")
 local Debris = game:GetService("Debris")
 local player = Players.LocalPlayer
 local env = (getgenv and getgenv()) or _G
-for v = 1, 12 do
+for v = 1, 13 do
     local stop = env["RagdollGoreV" .. v .. "Stop"]
     if type(stop) == "function" then pcall(stop) end
 end
