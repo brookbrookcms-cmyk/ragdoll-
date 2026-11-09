@@ -32,5 +32,10 @@ FileMesh plus `SpecialMesh` route used by this client script supports a color
 texture but does not provide that PBR stack. A client script cannot extract
 the game's private head mesh or reliably replace server-owned ragdoll physics.
 Uploaded, accessible replacement assets and supported runtime loading would
-be necessary to reach the requested sculpted/PBR look. V16 changes only local
+be necessary to reach the requested sculpted/PBR look. These scripts change only local
 visuals and keeps the game's hit and damage systems authoritative.
+
+V22 varies local cut depth, spread, and size using weapon attributes or an
+equipped Tool name when the game exposes one. These are visual profiles, not
+ballistic simulation: the client does not receive reliable projectile mass,
+velocity, trajectory, penetration, or server impulse data for every hit.
